@@ -1,0 +1,33 @@
+<main role="main bg-secondary">
+  <div class="container-fluid h-100 bg-light">
+    <div class="album py-5">
+    <h1 class="text-dark">User reservations</h1>
+      <hr>
+        <div class="row mx-lg-n5 px-5">
+            <% @user.reservations.each do |reserve| %>
+                    <div class="col-md-3 ml-1">
+                        <div class="card mb-5 shadow-sm">
+                            <%= link_to user_rooms_reservation_path(reserve) do %>
+                                <%= attachment_image_tag @room, :image, fallback: "no-image.png", class: "bd-placeholder-img card-img-top", style: "width:100%; height:220px; object-fit:cover;" %>
+                            <% end %>
+                            <div class="card-body">
+                                <h6 class="card-title">チェックイン</h6>
+                                <h4><%= reserve.start %></h4>
+                                <h6 class="card-text">チェックアウト</h6>
+                                <h4><%= reserve.end %> 円</h4>
+                                <h6 class="card-title">宿泊者数</h6>
+                                <h4><%= reserve.number_of_people %></h4>
+                                <div class="d-grid gap-2 d-md-flex justify-content-between">
+                                <h6 style="font-size: 12px; margin-top:15px;">※画像クリックで詳細へ</h6>
+                                    <% if reserve.user.id == current_user.id %>
+                                    <%= link_to "編集", edit_user_rooms_reservation_path(reserve),class:"btn btn-secondary btn-lg" %>
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <% end %>
+        </div>
+    </div>
+  </div>
+</main>

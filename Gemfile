@@ -74,3 +74,5 @@ gem 'webpacker', '~> 4.0'
 group :development, :test do
   gem 'pry-rails'
 end
+
+gem 'bootstrap-slider-rails'

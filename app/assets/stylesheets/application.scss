@@ -10,6 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *=require bootstrap-slider
  */
 
  @import "bootstrap-sprockets";
@@ -17,4 +18,8 @@
 
  .navbar {
      border-bottom: 1px solid #FFF;
+ }
+
+ .profile_image {
+     border-radius: 50%;
  }

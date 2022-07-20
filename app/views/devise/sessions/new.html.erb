@@ -12,7 +12,6 @@
 
       <div class="col-md-6 d-inline-flex align-items-center">
         <div class="col align-self-center bg-light py-4 px-2 mx-5 rounded">
-          <form>
           <div class="form-group">
           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <%= f.label :email, class: "label my-2" %>
@@ -31,7 +30,6 @@
             </div>
             <% end %>
           </div>
-          </form>
           <div class="form-group mt-3">
           <%= f.submit "Log in", class: "btn btn-secondary mx-4 mb-2" %>
           </div>

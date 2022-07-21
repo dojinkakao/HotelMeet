@@ -36,9 +36,10 @@
       <div class="collapse navbar-collapse justify-content-between mx-2">
         <ul class="nav navbar-nav mr-auto">
         <li class="nav-item active">
-          <form class="form-inline my-2 my-md-0">
-            <input class="form-control" type="text" placeholder="地域検索">
-          </form>
+          <%= search_form_for @search do |f| %>
+            <%= f.search_field :address_cont, url: rooms_path, type: "text", placeholder: "地域検索", class: "mt-1" %>
+            <%= f.submit ("検索") , class: 'btn btn-light btn-sm mb-1'%>
+          <% end %>
           </li>
           <%= link_to "お部屋一覧", rooms_path, class: 'btn btn-outline-light', style: "margin-left:10px;" %>
         </ul>
@@ -68,5 +69,10 @@
     </nav>
     
   <%= yield %>
+  <footer class="footer mt-auto py-2 bg-black">
+  <div class="container">
+    <span class="text-muted" style="color:white;">Hotel Meet.</span>
+  </div>
+</footer>
   </body>
 </html>

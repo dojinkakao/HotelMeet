@@ -1,10 +1,11 @@
-<div class="container-fluid py-5 h-100 bg-light">
-    <h1 class="text-dark">Create Room</h1>
+<div class="container-fluid pt-3 bg-light">
+    <div class="col vh-100">
+        <h1 class="text-dark">Create Room</h1>
       <hr>
-    <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="row d-flex justify-content-center align-items-center">
       <div class="col-lg-3">
         <div class="text-center">
-          <%= attachment_image_tag @room, :image, fallback: "no-image.png", class: "img-fluid img-thumbnail mt-4 mb-2", style: "width: 150px; z-index: 1" %>
+          <%= attachment_image_tag @room, :image, fallback: "no-image.png", class: "img-fluid img-thumbnail mt-4 mb-2", style: "width: 250px; z-index: 1" %>
           <h6>Upload a room photo...</h6>
           <%= form_for @room do |f| %>
           <%= f.attachment_field :image, class: "form-control" %>
@@ -39,7 +40,7 @@
         <div class="col-lg-3 mt-4">
         <div class="d-flex justify-content-between">
             <div class="col-4">
-                <%= link_to "戻る",user_rooms_path, class:"btn btn-outline-dark btn-lg" %>
+                <%= link_to "戻る",rooms_path, class:"btn btn-outline-dark btn-lg" %>
             </div>
             <div class="col-7">
                 <%= f.submit '投稿', class: "btn btn-secondary btn-lg" %>
@@ -47,5 +48,6 @@
             </div>
         </div>
         </div>
+   </div>
    </div>
 </div>

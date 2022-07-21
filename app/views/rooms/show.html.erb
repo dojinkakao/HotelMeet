@@ -28,7 +28,7 @@
           <% if @room.user.id == current_user.id %>
             <%= link_to "編集", edit_room_path,class:"btn btn-secondary btn-lg" %>
           <% elsif %>
-            <%= link_to "予約", "/rooms/#{@room.id}/reservation",class:"btn btn-secondary btn-lg" %>
+            <%= link_to "予約", new_reservations_path, class:"btn btn-secondary btn-lg" %>
           <% end %>
         <% else %>
         <div class="mr-auto pt-2 bd-highlight">

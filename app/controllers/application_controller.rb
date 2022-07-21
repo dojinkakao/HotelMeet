@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_search
   
   def after_sign_in_path_for(resource)
     user_path(current_user)
@@ -7,6 +8,11 @@ class ApplicationController < ActionController::Base
 
   def after_sign_up_path_for(resource)
     user_path(current_user)
+  end
+
+  def set_search
+    @search = Room.ransack(params[:q])
+    @search_rooms = @search.result.order(created_at: :desc).page(params[:page])
   end
 
   private

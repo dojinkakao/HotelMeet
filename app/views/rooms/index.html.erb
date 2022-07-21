@@ -4,7 +4,7 @@
       <h1 class="text-dark">Rooms All</h1>
       <hr>
         <div class="row mx-lg-n5 px-5">
-            <% @rooms.each do |room| %>
+            <% @search_rooms.each do |room| %>
                     <div class="col-md-3 ml-1">
                         <div class="card mb-5 shadow-sm">
                             <%= link_to room_path(room) do %>

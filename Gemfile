@@ -76,3 +76,9 @@ group :development, :test do
 end
 
 gem 'bootstrap-slider-rails'
+
+gem 'ransack'
+
+gem 'kaminari', '~> 0.17.0'
+
+gem 'bootstrap4-kaminari-views'

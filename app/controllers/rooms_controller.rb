@@ -1,6 +1,10 @@
 class RoomsController < ApplicationController
+before_action :set_search
+
   def index
     @rooms = Room.all.order(id: "DESC")
+    @q = Room.ransack(params[:q])
+    @rooms = @q.result
   end
 
   def show

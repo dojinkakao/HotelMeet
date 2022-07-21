@@ -15,7 +15,9 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = current_user.reservations.build(reservation_params)
-    
+    @room = Room.find(params[:id])
+    @reservation.room_id = @room.id
+    binding.pry
     if @reservation.save
       redirect_to user_room_reservations_path(@reservation), notice: "新規予約をしました。"
     else

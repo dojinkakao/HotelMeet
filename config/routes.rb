@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   end
   get 'users/:id/room' => 'users#room'
   get 'users/:id/reservation' => 'users#reservation'
-  resource :reservations
+  
+  resources :reservations
 end

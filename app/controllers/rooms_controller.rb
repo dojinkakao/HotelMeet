@@ -19,7 +19,7 @@ before_action :set_search
   def create
     @room = current_user.rooms.build(room_params)
     if @room.save
-      redirect_to user_room_path(@room), notice: "お部屋を投稿しました。"
+      redirect_to room_path(@room), notice: "お部屋を投稿しました。"
     else
       render :new
     end
@@ -49,6 +49,6 @@ before_action :set_search
 
   private
   def room_params
-    params.require(:room).permit(:image, :address, :about, :price)
+    params.require(:room).permit(:id,:image, :address, :about, :price)
   end
 end

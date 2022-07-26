@@ -9,19 +9,18 @@ class ReservationsController < ApplicationController
   end
 
   def new
-    @reservation = Reservation.new
-    @room = Room.find_by(id: params[:id])
+    @reservation = Reservation.new(new_reservation_params)
+    @room = Room.find(params[:id])
   end
 
   def create
-    @reservation = current_user.reservations.build(reservation_params)
-    @room = Room.find(params[:id])
-    @reservation.room_id = @room.id
-    binding.pry
+    @reservation = Reservation.new(create_reservation_params)
+    @room = Room.find(params[:reservation][:room_id])
+    
     if @reservation.save
-      redirect_to user_room_reservations_path(@reservation), notice: "新規予約をしました。"
+      redirect_to @reservation, notice: "新規予約をしました。"
     else
-      render :new
+      render "confirm"
     end
   end
 
@@ -48,7 +47,11 @@ class ReservationsController < ApplicationController
   end
 
   private
-  def reservation_params
-    params.permit(:room_id, :start, :end, :number_of_people)
+  def new_reservation_params
+    params.permit(:user_id,:room_id, :start, :end, :number_of_people)
+  end
+
+  def create_reservation_params
+    params.require(:reservation).permit(:user_id, :room_id, :start, :end, :number_of_people)
   end
 end

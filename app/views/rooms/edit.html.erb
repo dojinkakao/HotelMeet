@@ -1,4 +1,5 @@
 <div class="container-fluid pt-3 bg-light">
+      <%= form_with model: @room do |f| %>
     <div class="col vh-100">
         <h1 class="text-dark">Edit Room</h1>
       <hr>
@@ -7,7 +8,6 @@
         <div class="text-center">
           <%= attachment_image_tag @room, :image, fallback: "no-image.png", class: "img-fluid img-thumbnail mt-4 mb-2", style: "width: 250px; z-index: 1" %>
           <h6>Upload a room photo...</h6>
-          <%= form_for @room do |f| %>
           <%= f.attachment_field :image, class: "form-control" %>
         </div>
       </div>

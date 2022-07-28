@@ -52,7 +52,8 @@
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <%= link_to "マイページ",user_path(current_user), class: "dropdown-item" %>
                 <%= link_to "お部屋登録",new_room_path(current_user), class: "dropdown-item" %>
-                <a href="" class= "dropdown-item">子メニュー</a>
+                <%= link_to "予約一覧","/users/#{current_user.id}/reservation", class: "dropdown-item" %>
+                <%= link_to "登録一覧", "/users/#{current_user.id}/room", class: "dropdown-item" %>
                 <%= link_to "ログアウト",destroy_user_session_path, method: :delete, class: 'dropdown-item border-top' %>
               </div>
           </div>

@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
   def show
     @reservation = Reservation.find(params[:id])
-    @room = Room.find(params[:id])
+    @room = Room.find_by(params[:id])
     start_date = @reservation.start.strftime('%Y%m%d').to_i
     end_date = @reservation.end.strftime('%Y%m%d').to_i
     day = end_date - start_date
@@ -16,25 +16,24 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(create_reservation_params)
     @room = Room.find(params[:reservation][:room_id])
-    
     if @reservation.save
       redirect_to @reservation, notice: "新規予約をしました。"
     else
-      render "confirm"
+      render :new
     end
   end
 
   def edit
     @reservation = Reservation.find(params[:id])
     if @reservation.user != current_user
-      redirect_to user_room_reservations_path(@reservation), alert: "不正なアクセスです。"
+      redirect_to reservations_path(@reservation), alert: "不正なアクセスです。"
     end
   end
 
   def update
     @reservation = Reservation.find(params[:id])
-    if @reservation.update(reservation_params)
-      redirect_to user_room_reservations_path(@reservation), notice: "予約内容を更新しました。"
+    if @reservation.update(create_reservation_params)
+      redirect_to reservation_path(@reservation), notice: "予約内容を更新しました。"
     else
       render :edit
     end
@@ -43,7 +42,7 @@ class ReservationsController < ApplicationController
   def destroy
     reservation = Reservation.find(params[:id])
     reservation.destroy
-    redirect_to "/users/#{@user.id}/reservation", notice: "予約を取り消しました。"
+    redirect_to "/users/#{@reservation.user.id}/reservation", notice: "予約を取り消しました。"
   end
 
   private

@@ -28,7 +28,7 @@
     <div class="p-2 bd-highlight">
         <%= link_to "戻る", rooms_path,class:"btn btn-secondary btn-lg" %>
           <% if @reservation.user.id == current_user.id %>
-            <%= link_to "編集", edit_reservation_path,class:"btn btn-secondary btn-lg" %>
+            <%= link_to "編集", edit_reservation_path(@reservation),class:"btn btn-secondary btn-lg" %>
           <% end %>
         <% else %>
         <div class="mr-auto pt-2 bd-highlight">

@@ -1,4 +1,5 @@
 <div class="container-fluid pt-3 bg-light">
+  <%= form_for @user do |f| %>
     <div class="col vh-100">
         <h1 class="text-dark">Edit Profile</h1>
       <hr>
@@ -7,7 +8,6 @@
         <div class="text-center">
           <%= attachment_image_tag @user, :profile_image, fallback: "no-profile-image.png", class: "img-fluid img-thumbnail mt-4 mb-2", style: "width: 150px; z-index: 1" %>
           <h6>Upload a different photo...</h6>
-          <%= form_for @user do |f| %>
           <%= f.attachment_field :profile_image, class: "form-control" %>
         </div>
       </div>

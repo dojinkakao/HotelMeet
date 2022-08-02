@@ -23,57 +23,54 @@
 
   <body>
     <% if flash[:notice] %>
-    <p class="notice"><%= notice %></p>
+      <p class="notice"><%= notice %></p>
     <% end %>
 
     <% if flash[:alert] %>
-    <p class="alert"><%= alert %></p>
+      <p class="alert"><%= alert %></p>
     <% end %>
     
     <nav class="navbar navbar-expand-md navbar-dark bg-black">
-    <%= link_to "HOTEL MEET",root_path, class: "navbar-brand display-block mx-2" %>
-
+      <%= link_to "HOTEL MEET",root_path, class: "navbar-brand display-block mx-2" %>
       <div class="collapse navbar-collapse justify-content-between mx-2">
         <ul class="nav navbar-nav mr-auto">
-        <li class="nav-item active">
-          <%= search_form_for @search do |f| %>
-            <%= f.search_field :address_cont, url: rooms_path, type: "text", placeholder: "地域検索", class: "mt-1" %>
-            <%= f.submit ("検索") , class: 'btn btn-light btn-sm mb-1'%>
-          <% end %>
+          <li class="nav-item active">
+            <%= search_form_for @search do |f| %>
+              <%= f.search_field :address_cont, url: rooms_path, type: "text", placeholder: "地域検索", class: "mt-1" %>
+              <%= f.submit ("検索") , class: 'btn btn-light btn-sm mb-1'%>
+            <% end %>
           </li>
           <%= link_to "お部屋一覧", rooms_path, class: 'btn btn-outline-light', style: "margin-left:10px;" %>
         </ul>
-
-      <ul class="nav navbar-nav menu">
-        <% if user_signed_in? %>
-        <div class="dropdown show"  style="margin-right: 15px;">
-          <a class="dropdown-toggle text-white text-decoration-none" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= attachment_image_tag current_user, :profile_image, fallback: "no-profile-image.png", class: "header_img", style: "max-height: 40px; max-width: 40px;" %> <%= current_user.username %>
-          </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <%= link_to "マイページ",user_path(current_user), class: "dropdown-item" %>
-                <%= link_to "お部屋登録",new_room_path(current_user), class: "dropdown-item" %>
-                <%= link_to "予約一覧","/users/#{current_user.id}/reservation", class: "dropdown-item" %>
-                <%= link_to "登録一覧", "/users/#{current_user.id}/room", class: "dropdown-item" %>
-                <%= link_to "ログアウト",destroy_user_session_path, method: :delete, class: 'dropdown-item border-top' %>
-              </div>
+        <ul class="nav navbar-nav menu">
+          <% if user_signed_in? %>
+          <div class="dropdown show"  style="margin-right: 30px;">
+            <a class="dropdown-toggle text-white text-decoration-none" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= attachment_image_tag current_user, :profile_image, fallback: "no-profile-image.png", class: "header_img", style: "max-height: 40px; max-width: 40px;" %> <%= current_user.username %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <%= link_to "マイページ",user_path(current_user), class: "dropdown-item" %>
+              <%= link_to "お部屋登録",new_room_path(current_user), class: "dropdown-item" %>
+              <%= link_to "予約一覧","/users/#{current_user.id}/reservation", class: "dropdown-item" %>
+              <%= link_to "登録一覧", "/users/#{current_user.id}/room", class: "dropdown-item" %>
+              <%= link_to "ログアウト",destroy_user_session_path, method: :delete, class: 'dropdown-item border-top' %>
+            </div>
           </div>
           </ul>
-        </div>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "LOG IN",new_user_session_path, class: 'btn btn-secondary' %>
-            <%= link_to "SIGN UP",new_user_registration_path, class: 'btn btn-secondary' %>
-          </li>
-        <% end %>
-      </ul>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "LOG IN",new_user_session_path, class: 'btn btn-secondary' %>
+              <%= link_to "SIGN UP",new_user_registration_path, class: 'btn btn-secondary' %>
+            </li>
+          <% end %>
+        </ul>
       </div>
     </nav>
     
   <%= yield %>
-  <footer class="footer mt-auto py-2 bg-black">
-  <div class="container">
-    <span class="text-muted" style="color:white;">Hotel Meet.</span>
-  </div>
-</footer>
+    <footer class="footer mt-auto py-2 bg-black">
+      <div class="container">
+        <span class="text-muted" style="color:white;">Hotel Meet.</span>
+      </div>
+    </footer>
   </body>
 </html>

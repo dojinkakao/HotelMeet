@@ -1,0 +1,45 @@
+<main role="main">
+
+<div id="carousel" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carousel" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel" data-slide-to="1" ></li>
+    <li data-target="#carousel" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner" role="listbox">
+    <div class="carousel-item active" data-bs-interval="100">
+      <%= image_tag 'hotel_room1.jpeg', class: "bd-placeholder-img bd-placeholder-img-lg d-block w-100", style: "max-height: 650px; object-fit:cover; object-position:50% 90%;" %>
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <%= image_tag 'hotel_room2.jpeg', class: "bd-placeholder-img bd-placeholder-img-lg d-block w-100", style: "max-height: 650px; object-fit:cover; object-position:50% 10%" %>
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <%= image_tag 'hotel_room3.jpeg', class: "bd-placeholder-img bd-placeholder-img-lg d-block w-100", style: "max-height: 650px; object-fit:cover;" %>
+    </div>
+  </div>
+</div>
+
+  <div class="container marketing my-5">
+    <div class="row">
+      <div class="col-lg-4">
+        <%= image_tag 'kakuyasu.png', class:"bd-placeholder-img mb-3 shadow-md", style: "object-fit:cover;", width:"240", height:"180", role:"img" %>
+        <h2>格安特集</h2>
+        <p>旅行に行きたいけど今月はちょっと厳しいなあ...。 そんなあなたでも気軽に１万円以下で泊まれるリーズナブルなお部屋を集めました。</p>
+        <p><%= link_to 'Check →', rooms_path(q: { price_lteq: '10000' }),class:"btn btn-secondary", role:"button" %></p>
+      </div>
+      <div class="col-lg-4">
+        <%= image_tag 'hotel_room3.jpeg', class:"bd-placeholder-img mb-3 shadow-md", style: "object-fit:cover;", width:"240", height:"180", role:"img" %>
+        <h2>ラグジュアリー特集</h2>
+        <p>特別な日のためにちょっとした贅沢を。 日常では味わえないラグジュアリーな空間をお届けするお部屋を集めました。 記念日やお誕生日のご利用にオススメです。</p>
+        <p><%= link_to 'Check →', rooms_path(q: { price_gteq: '10001' }),class:"btn btn-secondary", role:"button" %></p>
+      </div>
+      <div class="col-lg-4">
+        <%= image_tag 'tokyo.png', class:"bd-placeholder-img mb-3 shadow-md", style: "object-fit:cover;", width:"240", height:"180", role:"img" %>
+        <h2>東京特集</h2>
+        <p>旅行をするならやっぱり都心が良い！ 都心にお住まいの方は勿論、地方からお越しの方でも楽しめる東京のホテルを集めました。</p>
+        <p><%= link_to 'Check →', rooms_path(q: { address_cont: '東京' }),class:"btn btn-secondary", role:"button" %></p>
+      </div>
+    </div>
+
+  </div>
+</main>

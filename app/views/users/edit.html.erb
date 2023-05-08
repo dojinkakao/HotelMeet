@@ -1,0 +1,53 @@
+<div class="container-fluid pt-3 bg-light">
+  <%= form_for @user do |f| %>
+    <div class="col vh-100">
+        <h1 class="text-dark">Edit Profile</h1>
+      <hr>
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-lg-3">
+        <div class="text-center">
+          <%= attachment_image_tag @user, :profile_image, fallback: "no-profile-image.png", class: "img-fluid img-thumbnail mt-4 mb-2", style: "width: 150px; z-index: 1" %>
+          <h6>Upload a different photo...</h6>
+          <%= f.attachment_field :profile_image, class: "form-control" %>
+        </div>
+      </div>
+      
+      <div class="col-lg-5">
+        <div class="col">
+            <h3>プロフィール</h3>
+            <div class="form-group">
+                <%= f.label :username, "ユーザー名", class: "col-lg-3 control-label" %>
+                <div class="col-lg-12">
+                <%= f.text_field :username, class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <%= f.label :email, "メールアドレス", class: "col-lg-3 control-label" %>
+                <div class="col-lg-12">
+                <%= f.email_field :email, class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <%= f.label :profile, "プロフィール", class: "col-lg-3 control-label" %>
+                <div class="col-lg-12">
+                <%= f.text_area :profile, class: "form-control" %>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col-lg-3 mt-4">
+        <div class="d-flex justify-content-between">
+            <div class="col-4">
+                <%= link_to "戻る",user_path(@user), class:"btn btn-outline-dark btn-lg" %>
+            </div>
+            <div class="col-7">
+                <%= f.submit "更新", class: "btn btn-secondary btn-lg" %>
+            <% end %>
+            </div>
+        </div>
+        </div>
+   </div>
+   </div>
+</div>

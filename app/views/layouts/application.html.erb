@@ -5,11 +5,72 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script>
+      $( document ).ready(function(){
+      $('#mycarousel').carousel();
+      });
+    </script>
   </head>
 
   <body>
-    <%= yield %>
+    <% if flash[:notice] %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+    
+    <nav class="navbar navbar-expand-md navbar-dark bg-black">
+      <%= link_to "HOTEL MEET",root_path, class: "navbar-brand display-block mx-2" %>
+      <div class="collapse navbar-collapse justify-content-between mx-2">
+        <ul class="nav navbar-nav mr-auto">
+          <li class="nav-item active">
+            <%= search_form_for @search do |f| %>
+              <%= f.search_field :address_cont, url: rooms_path, type: "text", placeholder: "地域検索", class: "mt-1" %>
+              <%= f.submit ("検索") , class: 'btn btn-light btn-sm mb-1'%>
+            <% end %>
+          </li>
+          <%= link_to "お部屋一覧", rooms_path, class: 'btn btn-outline-light', style: "margin-left:10px;" %>
+        </ul>
+        <ul class="nav navbar-nav menu">
+          <% if user_signed_in? %>
+          <div class="dropdown show"  style="margin-right: 30px;">
+            <a class="dropdown-toggle text-white text-decoration-none" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= attachment_image_tag current_user, :profile_image, fallback: "no-profile-image.png", class: "header_img", style: "max-height: 40px; max-width: 40px;" %> <%= current_user.username %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <%= link_to "マイページ",user_path(current_user), class: "dropdown-item" %>
+              <%= link_to "お部屋登録",new_room_path(current_user), class: "dropdown-item" %>
+              <%= link_to "予約一覧","/users/#{current_user.id}/reservation", class: "dropdown-item" %>
+              <%= link_to "登録一覧", "/users/#{current_user.id}/room", class: "dropdown-item" %>
+              <%= link_to "ログアウト",destroy_user_session_path, method: :delete, class: 'dropdown-item border-top' %>
+            </div>
+          </div>
+          </ul>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "LOG IN",new_user_session_path, class: 'btn btn-secondary' %>
+              <%= link_to "SIGN UP",new_user_registration_path, class: 'btn btn-secondary' %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+    
+  <%= yield %>
+    <footer class="footer mt-auto py-2 bg-black">
+      <div class="container">
+        <span class="text-muted" style="color:white;">Hotel Meet.</span>
+      </div>
+    </footer>
   </body>
 </html>

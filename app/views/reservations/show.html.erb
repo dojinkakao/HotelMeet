@@ -1,0 +1,48 @@
+<main role="main">
+<div class="container-fluid py-4 h-100 bg-light">
+  <h1 class="text-dark">Reservation About</h1>
+  <hr>
+<div class="row d-flex justify-content-center align-items-center h-100">
+<div class="col col-lg-9 col-xl-5">
+<div class="card shadow-sm">
+  <%= attachment_image_tag @reservation.room, :image, fallback: "no-image.png", class: "card-img-top" %>
+  <div class="card-body">
+    <p class="card-title">チェックイン</p>
+    <h4><%= @reservation.start %></h4>
+    <p class="card-title">チェックアウト</p>
+    <h4><%= @reservation.end %></h4>
+    <p class="card-title">宿泊者人数</p>
+    <h4><%= @reservation.number_of_people %> 名様</h4>
+    <p class="card-title">合計</p>
+    <h5><%= @total %>円</h5>
+    <div class="d-grid gap-2 d-md-flex justify-content-between">
+    <% if user_signed_in? %>
+    <div class="mr-auto pt-2 bd-highlight">
+    <h3>
+    <%= link_to user_path(@room.user_id) do %>
+      <%= attachment_image_tag @reservation.user, :profile_image, fallback: "no-profile-image.png", class: "profile_image", style: "max-height: 50px; max-width: 50px;" %>
+    <% end %>
+    <span class="pl-3"><%= @reservation.user.username %></span>
+    </h3>
+    </div>
+    <div class="p-2 bd-highlight">
+        <%= link_to "戻る", rooms_path,class:"btn btn-secondary btn-lg" %>
+          <% if @reservation.user.id == current_user.id %>
+            <%= link_to "編集", edit_reservation_path(@reservation),class:"btn btn-secondary btn-lg" %>
+          <% end %>
+        <% else %>
+        <div class="mr-auto pt-2 bd-highlight">
+        <%= link_to "戻る", user_rooms_path,class:"btn btn-secondary btn-lg" %>
+        </div>
+        <div class="p-2 bd-highlight">
+          <%= link_to "ログイン",user_session_path,class:"btn btn-secondary btn-lg" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</main>
